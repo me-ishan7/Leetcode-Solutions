@@ -17,10 +17,12 @@ class Solution {
         return ans;
     }
     static boolean isPossible(int[] nums, int mid, int threshold) {
-        int sum = 0;
-        for(float ele : nums){
+        long sum = 0;
+        for(int ele : nums){
 
-            sum += Math.ceil(ele / mid);
+            sum += (ele + mid - 1) / mid;
+
+            if(sum > threshold) break;
         }
         return sum <= threshold;
     }
