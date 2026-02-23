@@ -1,27 +1,21 @@
 class Solution {
     public int numberOfSubstrings(String s) {
-
-        int lastA = -1;
-        int lastB = -1;
-        int lastC = -1;
-
         int count = 0;
+        int n = s.length();
+        int[] hash = new int[3];
+        int left = 0;
 
-        for(int i=0;i<s.length();i++){
-
+        for(int i = 0; i < n; i++) {
             char ch = s.charAt(i);
+            hash[ch - 'a']++;
 
-            if(ch=='a') lastA = i;
-            if(ch=='b') lastB = i;
-            if(ch=='c') lastC = i;
-
-            int minIndex = Math.min(lastA,
-                           Math.min(lastB,lastC));
-
-            if(minIndex != -1)
-                count += minIndex + 1;
+            while(hash[0] > 0 && hash[1] > 0 && hash[2] > 0){
+                count += (n - i);
+                char leftchar = s.charAt(left);
+                hash[leftchar - 'a']--;
+                left++;
+            } 
         }
-
         return count;
     }
 }
