@@ -30,11 +30,16 @@ class Solution {
     }
     static ListNode reverse(ListNode head){
         if(head == null || head.next == null) return head;
-        ListNode newHead = reverse(head.next);
+        ListNode prev = null;
+        ListNode curr = head;
 
-        ListNode front = head.next;
-        front.next =  head;
-        head.next = null;
-        return newHead;
+        while(curr != null){
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
     }
 }
