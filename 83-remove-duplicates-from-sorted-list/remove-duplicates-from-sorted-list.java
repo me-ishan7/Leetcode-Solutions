@@ -11,7 +11,7 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if(head == null) return null;
-         ListNode temp = head;
+        ListNode temp = head;
 
         while(temp.next != null) {
             if(temp.val == temp.next.val){
@@ -19,6 +19,7 @@ class Solution {
             }
             else temp = temp.next;
         }
+        
         return head;
     }
 }
