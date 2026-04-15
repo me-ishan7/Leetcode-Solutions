@@ -12,8 +12,9 @@ class Solution {
                 res.add(new ArrayList<Integer>(ds));
                 return;
             }
+            if(k == 0 || n < 0) return;
             for(int i = curr; i <= 9; i++) {
-                if(k == 0 || n < 0) return;
+                if (i > n) break;
                 ds.add(i);
                 findCombination(i + 1, n - i, ds, k - 1, res);
                 ds.remove(ds.size() - 1);
