@@ -5,12 +5,12 @@ class Solution {
         ArrayList<Integer> list = new ArrayList<>();
         boolean[] freq = new boolean[n];
 
-        findPermutations(nums, 0, n, list, freq, ans);
+        findPermutations(nums, 0, n, list, ans);
         return ans;
     }
 
     private static void findPermutations(int[] nums, int curr, int n, 
-    ArrayList<Integer> list, boolean[] freq, List<List<Integer>> ans) {
+    ArrayList<Integer> list, List<List<Integer>> ans) {
 
         if(list.size() == n) {
             ans.add(new ArrayList<Integer>(list));
@@ -18,12 +18,10 @@ class Solution {
         }
     
         for(int i = 0; i < n; i++) {
-            if(!freq[i]) {
+            if(!list.contains(nums[i])) {
                 list.add(nums[i]); 
-                freq[i] = true;
-                findPermutations(nums, i +1, n, list, freq, ans);
+                findPermutations(nums, i +1, n, list, ans);
                 list.remove(list.size() - 1);
-                freq[i] = false;
             }
             
         }   
