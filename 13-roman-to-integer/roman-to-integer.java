@@ -13,16 +13,25 @@ class Solution {
         int result = 0;
         int n = s.length();
 
-        for(int i = 0; i < n; i++) {
-            char ch = s.charAt(i);
+        // for(int i = 0; i < n; i++) {
+        //     char ch = s.charAt(i);
 
-            if(i < n - 1 && map.get(ch) < map.get(s.charAt(i + 1))){
-                result += map.get(s.charAt(i + 1)) - map.get(ch);
-                i++;
-            }
+        //     if(i < n - 1 && map.get(ch) < map.get(s.charAt(i + 1))){
+        //         result += map.get(s.charAt(i + 1)) - map.get(ch);
+        //         i++;
+        //     }
 
-            else result += map.get(ch);
+        //     else result += map.get(ch);
+        // }
+        result += map.get(s.charAt(n - 1));
+        for(int i = n - 2; i >= 0; i--) {
+            if(map.get(s.charAt(i)) >= map.get(s.charAt(i + 1)))
+                result += map.get(s.charAt(i));
+            else
+                result -= map.get(s.charAt(i));
         }
+
+
         return result;
     }
 }
