@@ -10,20 +10,18 @@ class Solution {
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
         
-        List<Map.Entry<Integer, Integer>> list = 
-            new ArrayList<>(map.entrySet());
+        Queue<Integer> minHeap = new PriorityQueue<>((a,b) -> map.get(a) - map.get(b));
 
-        list.sort(
-            (a, b) -> (
-                
-                    b.getValue() -  
-                    a.getValue()
-                    )
-                
-        );
+        for(int key : map.keySet()){
+            minHeap.add(key);
 
-        for(int i = 0; i < k; i++){
-            ans[i] = list.get(i).getKey();
+            if(minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        while(k-- > 0){
+            ans[k] = minHeap.poll();
         }
 
         return ans;
