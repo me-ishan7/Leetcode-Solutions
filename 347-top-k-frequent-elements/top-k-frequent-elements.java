@@ -15,11 +15,11 @@ class Solution {
 
         list.sort(
             (a, b) -> (
-                Integer.compare(
-                    b.getValue(), 
+                
+                    b.getValue() -  
                     a.getValue()
                     )
-                )
+                
         );
 
         for(int i = 0; i < k; i++){
