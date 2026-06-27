@@ -15,7 +15,9 @@ class Solution {
         int required = t.length();
 
         int minLen = Integer.MAX_VALUE;
+        int start = left;
         String res = "";
+
 
         for (int right = 0; right < s.length(); right++) {
             //Include Right
@@ -33,7 +35,7 @@ class Solution {
             while (required == 0) {
                 if(right - left + 1 < minLen) {
                     minLen = right - left + 1;
-                    res = s.substring(left, right + 1);
+                    start = left;
                 }
 
                 char leftChar = s.charAt(left);
@@ -48,6 +50,7 @@ class Solution {
                 left++;
             }
         }
-        return minLen == Integer.MAX_VALUE ? "" : res;
+        return minLen == Integer.MAX_VALUE ? "" : 
+                            s.substring(start, start + minLen);
     }
 }
