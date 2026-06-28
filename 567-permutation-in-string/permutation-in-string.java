@@ -1,23 +1,40 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        if (s2.length() < s1.length())
-            return false;
-
         int n = s1.length();
         int m = s2.length();
 
-        char[] chars = s1.toCharArray();
-        Arrays.sort((chars));
-        s1 = new String(chars);
+        if(n > m)
+            return false;
 
-        for (int i = 0; i <= m - n; i++) {
-            String temp = s2.substring(i, n + i);
-            char[] sortedS2 = temp.toCharArray();
-            Arrays.sort(sortedS2);
-            temp = new String(sortedS2);
+        int[] freq = new int[26];
 
-            if (s1.equals(temp))
-                return true;
+        // Store frequency of s1
+        for(char ch : s1.toCharArray()) {
+            freq[ch - 'a']++;
+        }
+
+        int left = 0;
+
+        for (int right = 0; right < m; right++) {
+            
+            freq[s2.charAt(right) - 'a']--;
+
+            if(right - left + 1 > n) {
+                freq[s2.charAt(left) - 'a']++;
+                left++;
+            }
+
+            if(right - left + 1 == n){
+                boolean flag = true;
+
+                for(int i = 0; i < 26; i++) {
+                    if(freq[i] != 0){
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag) return true;
+            }
 
         }
         return false;
