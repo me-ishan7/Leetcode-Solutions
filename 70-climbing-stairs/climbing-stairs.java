@@ -3,14 +3,21 @@ class Solution {
 
         if(n == 1) return n;
 
-        int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
+        // int[] dp = new int[n + 1];
+        // dp[0] = 1;
+        // dp[1] = 1;
+
+        int prev1 = 1; 
+        int prev2 = 1;
+        int ans  = 0;
 
         for(int i = 2; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+            // dp[i] = dp[i - 1] + dp[i - 2];
+            ans = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = ans;
         }
-        return dp[n];
+        return ans;
         
     }
 
