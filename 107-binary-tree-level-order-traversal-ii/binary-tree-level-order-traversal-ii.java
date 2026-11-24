@@ -41,16 +41,18 @@ class Solution {
                 temp.add(curr.val);
                 
             }
-            ans.add(temp);
+            ans.addFirst(temp);
         }
 
-        int size = ans.size();
+        // int size = ans.size();
 
-        List<List<Integer>> result = new ArrayList<>();
+        // List<List<Integer>> result = new ArrayList<>();
 
-        for(int i = size - 1; i >= 0; i--) {
-            result.add(ans.get(i));
-        }
-        return result;
+        // for(int i = size - 1; i >= 0; i--) {
+        //     result.add(ans.get(i));
+        // }
+
+        //return result;
+        return ans;
     }
 }
